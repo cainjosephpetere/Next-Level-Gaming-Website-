@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXTLEVEL - Gaming & Esports Arena</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              navy: '#1E1B4B',
+              dark: '#110E33',
+              green: '#22C55E',
+              greenHover: '#16A34A',
+              cyan: '#0EA5E9',
+              cyanHover: '#0284C7',
+              bg: '#FAFAFC',
+              border: '#E5E7EB',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FAFAFC;
+      color: #1F2937;
+    }
+    .smooth-transition {
+      transition: all 0.2s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-brand-bg min-h-screen flex flex-col justify-between selection:bg-brand-green selection:text-white">
+
+  <!-- Top Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- EXACT LOGO: Purple Gaming Controller + Bold Green NEXTLEVEL Text -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('calculator')">
+          <!-- Controller SVG matching user image -->
+          <svg class="w-11 h-11 shrink-0 drop-shadow-sm" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="controllerBody" x1="10" y1="10" x2="90" y2="70" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#653DB3"/>
+                <stop offset="100%" stop-color="#3C2175"/>
+              </linearGradient>
+              <linearGradient id="dpadGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#9173E6"/>
+                <stop offset="100%" stop-color="#6045AD"/>
+              </linearGradient>
+              <linearGradient id="stickGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8F87EE"/>
+                <stop offset="100%" stop-color="#554DBA"/>
+              </linearGradient>
+            </defs>
+            <!-- Main Controller Body -->
+            <path d="M 28 12 
+                     C 38 12, 45 18, 50 20 
+                     C 55 18, 62 12, 72 12 
+                     C 86 12, 96 22, 94 40 
+                     C 92 58, 86 76, 75 76 
+                     C 67 76, 62 64, 58 56 
+                     C 54 48, 46 48, 42 56 
+                     C 38 64, 33 76, 25 76 
+                     C 14 76, 8 58, 6 40 
+                     C 4 22, 14 12, 28 12 Z" 
+                  fill="url(#controllerBody)"/>
+            
+            <!-- Left D-Pad Cross -->
+            <path d="M26 31h6v5h-6v6h-5v-6h-6v-5h6v-6h5v6z" fill="url(#dpadGrad)"/>
+            
+            <!-- Left Analog Stick -->
+            <circle cx="21" cy="48" r="5" fill="url(#stickGrad)"/>
+            <!-- Right Analog Stick -->
+            <circle cx="58" cy="48" r="5" fill="url(#stickGrad)"/>
+            
+            <!-- Right Action Buttons in Diamond Pattern -->
+            <!-- Top Button: Yellow -->
+            <circle cx="75" cy="27" r="3.2" fill="#FFC107"/>
+            <!-- Right Button: Red -->
+            <circle cx="83" cy="35" r="3.2" fill="#EF476F"/>
+            <!-- Bottom Button: Green -->
+            <circle cx="75" cy="43" r="3.2" fill="#06D6A0"/>
+            <!-- Left Button: Blue -->
+            <circle cx="67" cy="35" r="3.2" fill="#00B4D8"/>
+          </svg>
+
+          <!-- NEXTLEVEL Brand Text in #22C55E Green -->
+          <span class="text-2xl sm:text-3xl font-black tracking-tight text-[#22C55E] uppercase select-none">
+            NEXTLEVEL
+          </span>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <button onclick="switchTab('home')" id="nav-home" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-gray-600 hover:text-brand-navy hover:bg-gray-100 smooth-transition">Home</button>
+          <button onclick="switchTab('about')" id="nav-about" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-gray-600 hover:text-brand-navy hover:bg-gray-100 smooth-transition">About Us</button>
+          <button onclick="switchTab('overview')" id="nav-overview" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-gray-600 hover:text-brand-navy hover:bg-gray-100 smooth-transition">Overview</button>
+          <button onclick="switchTab('individual')" id="nav-individual" class="nav-link px-3 py-2 rounded-lg text-sm font-semibold text-gray-600 hover:text-brand-navy hover:bg-gray-100 smooth-transition">Individual</button>
+          <button onclick="switchTab('calculator')" id="nav-calculator" class="nav-link px-3 py-2 rounded-lg text-sm font-bold text-brand-navy bg-gray-100 border-b-2 border-brand-navy smooth-transition">Calculate Fees</button>
+        </nav>
+
+        <!-- Right Header Actions -->
+        <div class="hidden sm:flex items-center space-x-3">
+          <button onclick="openModal('Book a session', 'Configure your session parameters below to proceed with reserving an arena station.')" class="px-5 py-2 rounded-full border-2 border-brand-cyan text-brand-cyan font-bold text-sm hover:bg-brand-cyan/10 smooth-transition shadow-sm">
+            Book a session
+          </button>
+          <button onclick="openModal('Join the arena', 'Register as an official NEXTLEVEL arena member for exclusive tournament access and discounted rates.')" class="px-5 py-2.5 rounded-full bg-brand-green hover:bg-brand-greenHover text-white font-bold text-sm smooth-transition shadow-md hover:shadow-lg">
+            Join the arena
+          </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="md:hidden flex items-center">
+          <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-gray-600 hover:text-brand-navy">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-b border-brand-border bg-white px-4 pt-2 pb-4 space-y-2">
+      <button onclick="switchTab('home')" class="block w-full text-left px-3 py-2 rounded-md font-semibold text-gray-700 hover:bg-gray-100">Home</button>
+      <button onclick="switchTab('about')" class="block w-full text-left px-3 py-2 rounded-md font-semibold text-gray-700 hover:bg-gray-100">About Us</button>
+      <button onclick="switchTab('overview')" class="block w-full text-left px-3 py-2 rounded-md font-semibold text-gray-700 hover:bg-gray-100">Overview</button>
+      <button onclick="switchTab('individual')" class="block w-full text-left px-3 py-2 rounded-md font-semibold text-gray-700 hover:bg-gray-100">Individual</button>
+      <button onclick="switchTab('calculator')" class="block w-full text-left px-3 py-2 rounded-md font-bold text-brand-navy bg-gray-100">Calculate Fees</button>
+      <div class="pt-2 flex flex-col space-y-2">
+        <button onclick="openModal('Book a session', 'Select your preferred slot.')" class="w-full py-2.5 rounded-full border-2 border-brand-cyan text-brand-cyan font-bold text-sm">Book a session</button>
+        <button onclick="openModal('Join the arena', 'Become a member today.')" class="w-full py-2.5 rounded-full bg-brand-green text-white font-bold text-sm">Join the arena</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Page Content -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+    <!-- VIEW: CALCULATE FEES (MAIN VIEW) -->
+    <section id="view-calculator" class="tab-view block space-y-12">
+      
+      <!-- Hero Header & Banner -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <div class="inline-block px-3 py-1 bg-brand-green text-white text-xs font-black uppercase rounded-md tracking-wider shadow-sm">
+            FEE CALCULATOR
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-navy leading-tight">
+            Transparent, real-time arena rates.
+          </h1>
+          <p class="text-base sm:text-lg text-gray-600 max-w-2xl font-normal leading-relaxed">
+            Configure your session parameter requirements below to receive a detailed static itemized estimate for play packages, training, and optional catering.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+            <img 
+              src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=80" 
+              alt="Johannesburg Arena Live" 
+              class="w-full h-64 sm:h-72 object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="inline-flex items-center space-x-2 bg-black/80 text-brand-cyan text-xs font-bold px-3 py-1.5 rounded-md border border-brand-cyan/40 uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+                <span>JOHANNESBURG ARENA LIVE</span>
+              </span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 text-white text-xs font-medium">
+              Station Status: <span class="text-brand-green font-bold">24 Rigs Active</span> • High-Speed Fiber Redundancy
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Fee Estimator & Breakdown -->
+      <div class="space-y-6">
+        <div>
+          <span class="text-xs font-black text-brand-cyan uppercase tracking-widest">PRICE ESTIMATOR</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-brand-navy">Static Fee Configuration</h2>
+          <p class="text-sm text-gray-500 mt-1">Select parameters below to preview standard South African Rand (ZAR) itemized totals.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left Controls Container -->
+          <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-brand-border shadow-sm space-y-6">
+            <h3 class="text-lg font-bold text-brand-navy border-b border-gray-100 pb-3">Session Configuration</h3>
+
+            <!-- 1. Experience Type Toggle -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Experience Type</label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-gray-50 p-1.5 rounded-xl border border-gray-200">
+                <button onclick="updateParam('type', 'casual')" id="btn-type-casual" class="type-btn py-3 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition">
+                  Casual Gaming
+                  <span class="block text-[10px] font-normal text-gray-500 mt-0.5">R600 Base</span>
+                </button>
+                <button onclick="updateParam('type', 'prep')" id="btn-type-prep" class="type-btn py-3 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition">
+                  Tournament Prep
+                  <span class="block text-[10px] font-normal text-gray-500 mt-0.5">R1,200 Base</span>
+                </button>
+                <button onclick="updateParam('type', 'corporate')" id="btn-type-corporate" class="type-btn py-3 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition">
+                  Corporate Battle
+                  <span class="block text-[10px] font-normal text-gray-500 mt-0.5">R2,500 Base</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. Participant Count Toggle -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Participant Count</label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-gray-50 p-1.5 rounded-xl border border-gray-200">
+                <button onclick="updateParam('squad', 'solo')" id="btn-squad-solo" class="squad-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition">
+                  1 Gamer
+                  <span class="block text-[10px] font-normal text-gray-500">Solo Station</span>
+                </button>
+                <button onclick="updateParam('squad', 'small')" id="btn-squad-small" class="squad-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition">
+                  2-10 Squad
+                  <span class="block text-[10px] font-normal text-gray-500">Standard Room</span>
+                </button>
+                <button onclick="updateParam('squad', 'arena')" id="btn-squad-arena" class="squad-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition">
+                  10+ Grand Squad
+                  <span class="block text-[10px] font-normal text-gray-500">Full Arena Bay</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Session Duration Toggle -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Session Duration</label>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-gray-50 p-1.5 rounded-xl border border-gray-200">
+                <button onclick="updateParam('duration', '2h')" id="btn-dur-2h" class="dur-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition">2 Hours</button>
+                <button onclick="updateParam('duration', '4h')" id="btn-dur-4h" class="dur-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition">4 Hours</button>
+                <button onclick="updateParam('duration', 'day')" id="btn-dur-day" class="dur-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition">All Day Pass</button>
+              </div>
+            </div>
+
+            <!-- 4. Optional Extras Checkboxes -->
+            <div class="space-y-3 pt-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider">Optional Extras</label>
+              
+              <label class="flex items-center justify-between p-3.5 rounded-xl border border-gray-200 hover:border-gray-300 cursor-pointer smooth-transition bg-white">
+                <div class="flex items-center space-x-3">
+                  <input type="checkbox" id="chk-coaching" onchange="calculateTotal()" class="w-4 h-4 rounded text-brand-green focus:ring-brand-green accent-brand-green">
+                  <div>
+                    <span class="text-xs sm:text-sm font-bold text-brand-navy block">1-on-1 Pro Coaching Assessment</span>
+                    <span class="text-[11px] text-gray-500">Personalized tactical telemetry & aim analysis</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold text-brand-green bg-green-50 px-2.5 py-1 rounded-md border border-green-200">+R285</span>
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-xl border border-gray-200 hover:border-gray-300 cursor-pointer smooth-transition bg-white">
+                <div class="flex items-center space-x-3">
+                  <input type="checkbox" id="chk-catering" onchange="calculateTotal()" class="w-4 h-4 rounded text-brand-green focus:ring-brand-green accent-brand-green">
+                  <div>
+                    <span class="text-xs sm:text-sm font-bold text-brand-navy block">Catering Burgers & Refreshment Pack</span>
+                    <span class="text-[11px] text-gray-500">Gourmet burgers, energy drinks & bottomless snacks</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold text-brand-green bg-green-50 px-2.5 py-1 rounded-md border border-green-200">+R1,000</span>
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-xl border border-gray-200 hover:border-gray-300 cursor-pointer smooth-transition bg-white">
+                <div class="flex items-center space-x-3">
+                  <input type="checkbox" id="chk-stream" onchange="calculateTotal()" class="w-4 h-4 rounded text-brand-green focus:ring-brand-green accent-brand-green">
+                  <div>
+                    <span class="text-xs sm:text-sm font-bold text-brand-navy block">High-definition Live Stream Cast Setup</span>
+                    <span class="text-[11px] text-gray-500">Dedicated shoutcaster booth + 1080p stream</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold text-brand-green bg-green-50 px-2.5 py-1 rounded-md border border-green-200">+R1,026</span>
+              </label>
+            </div>
+
+          </div>
+
+          <!-- Right Dark Itemized Breakdown (#1E1B4B Container) -->
+          <div class="lg:col-span-5 bg-brand-navy text-white rounded-2xl p-6 sm:p-8 border border-indigo-900 shadow-2xl space-y-6 sticky top-28">
+            <div class="flex items-center justify-between border-b border-indigo-800/80 pb-4">
+              <h3 class="text-lg font-bold tracking-wide text-white">Itemized Estimate</h3>
+              <span class="text-[10px] uppercase bg-indigo-900/80 text-brand-cyan px-2.5 py-1 rounded-md font-bold tracking-wider border border-brand-cyan/30">ZAR (R)</span>
+            </div>
+
+            <!-- Dynamic Breakdown List -->
+            <div id="estimate-items" class="space-y-3 text-xs sm:text-sm">
+              <!-- Rendered via JS -->
+            </div>
+
+            <div class="border-t border-indigo-800/80 pt-4 space-y-2">
+              <div class="flex justify-between text-xs text-indigo-200">
+                <span>Subtotal</span>
+                <span id="txt-subtotal" class="font-semibold text-white">R0</span>
+              </div>
+              <div class="flex justify-between text-xs text-indigo-200">
+                <span>Johannesburg Municipal Tax (15%)</span>
+                <span id="txt-vat" class="font-semibold text-white">R0</span>
+              </div>
+            </div>
+
+            <div class="border-t-2 border-indigo-700/80 pt-4 flex items-baseline justify-between">
+              <div>
+                <span class="text-xs text-gray-300 font-bold uppercase tracking-wider block">Total Estimated Fee</span>
+                <span class="text-[10px] text-indigo-300">Includes station hardware & VAT</span>
+              </div>
+              <span id="txt-total" class="text-2xl sm:text-3xl font-black text-brand-green">R0</span>
+            </div>
+
+            <button onclick="triggerBookingModal()" class="w-full py-4 rounded-xl bg-brand-green hover:bg-brand-greenHover text-white font-bold text-sm tracking-wide smooth-transition shadow-lg flex items-center justify-center space-x-2">
+              <span>Secure this booking session</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </button>
+
+            <p class="text-[10px] text-indigo-300 text-center leading-normal">
+              *Prices are static estimates and include all Johannesburg facility operational surcharges. No hidden fees.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="pt-8 border-t border-gray-200 space-y-6">
+        <div>
+          <span class="text-xs font-black text-brand-cyan uppercase tracking-widest">GUIDELINES & INFO</span>
+          <h2 class="text-2xl font-black text-brand-navy">Frequently Asked Booking Queries</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 space-y-2">
+            <h4 class="font-bold text-brand-navy text-sm">Station Hardware Guarantees</h4>
+            <p class="text-xs text-gray-500 leading-relaxed">All stations feature RTX 4080 graphics, 240Hz monitors, mechanical keyboards, and low-latency optical gaming mice.</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 space-y-2">
+            <h4 class="font-bold text-brand-navy text-sm">Catering & Outside Refreshments</h4>
+            <p class="text-xs text-gray-500 leading-relaxed">Our in-house café serves hot food and cold beverages. Selecting catering includes bottomless sodas and snacks.</p>
+          </div>
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 space-y-2">
+            <h4 class="font-bold text-brand-navy text-sm">Rescheduling & Cancellations</h4>
+            <p class="text-xs text-gray-500 leading-relaxed">Bookings can be rescheduled up to 4 hours prior to the session start time without any cancellation penalty.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- OTHER TAB VIEWS -->
+    <section id="view-home" class="tab-view hidden space-y-8 text-center max-w-3xl mx-auto py-12">
+      <div class="inline-block px-3 py-1 bg-brand-green text-white text-xs font-black uppercase rounded-md">WELCOME TO NEXTLEVEL</div>
+      <h1 class="text-4xl font-black text-brand-navy">Johannesburg's Premier Esports Hub</h1>
+      <p class="text-gray-600 leading-relaxed">Experience high-performance competitive gaming, simulator rigs, and esports team preparation packages.</p>
+      <button onclick="switchTab('calculator')" class="px-6 py-3 rounded-full bg-brand-green text-white font-bold text-sm">Open Fee Calculator &rarr;</button>
+    </section>
+
+    <section id="view-about" class="tab-view hidden space-y-6 max-w-4xl mx-auto py-8">
+      <h1 class="text-3xl font-black text-brand-navy">About NEXTLEVEL Arena</h1>
+      <div class="bg-white p-8 rounded-2xl border border-gray-200 space-y-4 text-sm text-gray-600 leading-relaxed">
+        <p>NEXTLEVEL is Johannesburg’s top-tier gaming facility designed for competitive esports athletes and casual gamers alike.</p>
+        <p>Featuring gigabit fiber links, uninterrupted UPS power supply systems, and professional tournament setups, we ensure optimal performance without lag or disruption.</p>
+      </div>
+    </section>
+
+    <section id="view-overview" class="tab-view hidden space-y-6 max-w-4xl mx-auto py-8">
+      <h1 class="text-3xl font-black text-brand-navy">Facility Overview</h1>
+      <div class="bg-white p-8 rounded-2xl border border-gray-200 space-y-4 text-sm text-gray-600 leading-relaxed">
+        <ul class="list-disc pl-5 space-y-2">
+          <li>24 Pro-tier RTX 4080 Gaming Rigs</li>
+          <li>Soundproof Shoutcaster Stream Studio</li>
+          <li>Full Motion Racing & VR Simulators</li>
+          <li>VIP Private Squad Booths</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="view-individual" class="tab-view hidden space-y-6 max-w-4xl mx-auto py-8">
+      <h1 class="text-3xl font-black text-brand-navy">Individual Play Rates</h1>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-gray-200 space-y-3">
+          <h3 class="font-bold text-brand-navy">Solo PC Pass</h3>
+          <p class="text-xs text-gray-500">240Hz screen + full peripheral access.</p>
+          <button onclick="switchTab('calculator')" class="text-xs font-bold text-brand-green">Calculate Fee &rarr;</button>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-gray-200 space-y-3">
+          <h3 class="font-bold text-brand-navy">Racing Sim Rig</h3>
+          <p class="text-xs text-gray-500">Direct-drive wheel & hydraulic pedals.</p>
+          <button onclick="switchTab('calculator')" class="text-xs font-bold text-brand-green">Calculate Fee &rarr;</button>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-gray-200 space-y-3">
+          <h3 class="font-bold text-brand-navy">Console VIP Lounge</h3>
+          <p class="text-xs text-gray-500">4K 120Hz TVs with PS5 & Xbox Series X.</p>
+          <button onclick="switchTab('calculator')" class="text-xs font-bold text-brand-green">Calculate Fee &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-dark text-white border-t border-indigo-950 mt-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        
+        <!-- Brand Column -->
+        <div class="space-y-3 md:col-span-1">
+          <div class="flex items-center space-x-2.5">
+            <!-- Footer Controller SVG matching user image -->
+            <svg class="w-8 h-8 shrink-0" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 28 12 C 38 12, 45 18, 50 20 C 55 18, 62 12, 72 12 C 86 12, 96 22, 94 40 C 92 58, 86 76, 75 76 C 67 76, 62 64, 58 56 C 54 48, 46 48, 42 56 C 38 64, 33 76, 25 76 C 14 76, 8 58, 6 40 C 4 22, 14 12, 28 12 Z" fill="url(#controllerBody)"/>
+              <path d="M26 31h6v5h-6v6h-5v-6h-6v-5h6v-6h5v6z" fill="url(#dpadGrad)"/>
+              <circle cx="21" cy="48" r="5" fill="url(#stickGrad)"/>
+              <circle cx="58" cy="48" r="5" fill="url(#stickGrad)"/>
+              <circle cx="75" cy="27" r="3.2" fill="#FFC107"/>
+              <circle cx="83" cy="35" r="3.2" fill="#EF476F"/>
+              <circle cx="75" cy="43" r="3.2" fill="#06D6A0"/>
+              <circle cx="67" cy="35" r="3.2" fill="#00B4D8"/>
+            </svg>
+            <span class="text-xl font-black text-[#22C55E]">NEXTLEVEL</span>
+          </div>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            South Africa's premier gaming & esports arena location in Rosebank, Johannesburg.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="space-y-2">
+          <h5 class="text-xs font-bold uppercase tracking-wider text-indigo-300">Quick Navigation</h5>
+          <ul class="text-xs space-y-1.5 text-gray-400">
+            <li><button onclick="switchTab('calculator')" class="hover:text-white">Fee Calculator</button></li>
+            <li><button onclick="switchTab('about')" class="hover:text-white">About NEXTLEVEL</button></li>
+            <li><button onclick="switchTab('overview')" class="hover:text-white">Arena Rigs & Specs</button></li>
+            <li><button onclick="switchTab('individual')" class="hover:text-white">Individual Passes</button></li>
+          </ul>
+        </div>
+
+        <!-- Location & Contact -->
+        <div class="space-y-2">
+          <h5 class="text-xs font-bold uppercase tracking-wider text-indigo-300">Arena Address</h5>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            12 Oxford Road, Rosebank<br/>
+            Johannesburg, 2196<br/>
+            South Africa
+          </p>
+        </div>
+
+        <!-- Hours & Support -->
+        <div class="space-y-2">
+          <h5 class="text-xs font-bold uppercase tracking-wider text-indigo-300">Support & Hours</h5>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Mon - Sun: 09:00 - 00:00<br/>
+            Direct Tel: +27 234 567 890<br/>
+            Support: book@nextlevelarena.co.za
+          </p>
+        </div>
+
+      </div>
+
+      <div class="border-t border-indigo-900/60 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400">
+        <p>&copy; 2026 NEXTLEVEL Gaming & Esports Arena. All rates in ZAR (R).</p>
+        <div class="flex space-x-4 mt-3 sm:mt-0">
+          <span class="hover:text-white cursor-pointer">Privacy Policy</span>
+          <span class="hover:text-white cursor-pointer">Terms of Service</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Confirmation Modal -->
+  <div id="app-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-5 shadow-2xl border border-gray-200">
+      <div class="flex justify-between items-center border-b pb-3">
+        <h3 id="modal-title" class="text-lg font-black text-brand-navy">Booking Request</h3>
+        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+      </div>
+      <p id="modal-description" class="text-xs text-gray-600 leading-relaxed"></p>
+      <div id="modal-content-area" class="bg-gray-50 p-4 rounded-xl border border-gray-200 text-xs space-y-2"></div>
+      <div class="flex space-x-2 pt-2">
+        <button onclick="confirmBookingSuccess()" class="w-full py-2.5 rounded-xl bg-brand-green text-white font-bold text-xs hover:bg-brand-greenHover shadow-md">Confirm Session</button>
+        <button onclick="closeModal()" class="w-full py-2.5 rounded-xl border border-gray-300 text-gray-600 font-bold text-xs hover:bg-gray-100">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application State & Logic -->
+  <script>
+    // Config state
+    const state = {
+      type: 'prep',
+      squad: 'small',
+      duration: '4h',
+    };
+
+    // Pricing Matrix in ZAR
+    const pricing = {
+      types: {
+        casual: { name: 'Casual Gaming Package', base: 600 },
+        prep: { name: 'Tournament Prep Arena Booking', base: 1200 },
+        corporate: { name: 'Corporate Battle Package', base: 2500 }
+      },
+      squads: {
+        solo: { name: '1 Gamer (Solo)', mult: 0.6 },
+        small: { name: '2-10 Squad', mult: 1.0 },
+        arena: { name: '10+ Grand Squad', mult: 2.2 }
+      },
+      durations: {
+        '2h': { name: '2 Hours Session', mult: 0.6 },
+        '4h': { name: '4 Hours Session', mult: 1.0 },
+        'day': { name: 'All Day Pass', mult: 1.8 }
+      },
+      extras: {
+        coaching: { name: '1-on-1 Pro Coaching Assessment', cost: 285 },
+        catering: { name: 'Catering Burgers & Refreshment Pack', cost: 1000 },
+        stream: { name: 'High-definition Live Stream Cast Setup', cost: 1026 }
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderToggles();
+      calculateTotal();
+    });
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-link').forEach(el => {
+        el.classList.remove('text-brand-navy', 'bg-gray-100', 'border-b-2', 'border-brand-navy', 'font-bold');
+        el.classList.add('text-gray-600', 'font-semibold');
+      });
+
+      const targetView = document.getElementById(`view-${tabId}`);
+      if (targetView) targetView.classList.remove('hidden');
+
+      const targetNav = document.getElementById(`nav-${tabId}`);
+      if (targetNav) {
+        targetNav.classList.add('text-brand-navy', 'bg-gray-100', 'border-b-2', 'border-brand-navy', 'font-bold');
+        targetNav.classList.remove('text-gray-600', 'font-semibold');
+      }
+
+      document.getElementById('mobile-menu').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    function updateParam(category, value) {
+      state[category] = value;
+      renderToggles();
+      calculateTotal();
+    }
+
+    function renderToggles() {
+      ['casual', 'prep', 'corporate'].forEach(key => {
+        const btn = document.getElementById(`btn-type-${key}`);
+        if (!btn) return;
+        btn.className = state.type === key 
+          ? 'type-btn py-3 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition bg-brand-navy text-white shadow-md'
+          : 'type-btn py-3 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition bg-white text-gray-700 hover:bg-gray-100 border border-gray-200';
+      });
+
+      ['solo', 'small', 'arena'].forEach(key => {
+        const btn = document.getElementById(`btn-squad-${key}`);
+        if (!btn) return;
+        btn.className = state.squad === key 
+          ? 'squad-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition bg-brand-navy text-white shadow-md'
+          : 'squad-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition bg-white text-gray-700 hover:bg-gray-100 border border-gray-200';
+      });
+
+      ['2h', '4h', 'day'].forEach(key => {
+        const btn = document.getElementById(`btn-dur-${key}`);
+        if (!btn) return;
+        btn.className = state.duration === key 
+          ? 'dur-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition bg-brand-navy text-white shadow-md'
+          : 'dur-btn py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold text-center smooth-transition bg-white text-gray-700 hover:bg-gray-100 border border-gray-200';
+      });
+    }
+
+    function calculateTotal() {
+      const typeData = pricing.types[state.type];
+      const squadData = pricing.squads[state.squad];
+      const durData = pricing.durations[state.duration];
+
+      const baseCost = Math.round(typeData.base * squadData.mult * durData.mult);
+      let extrasCost = 0;
+      const activeExtras = [];
+
+      if (document.getElementById('chk-coaching')?.checked) {
+        extrasCost += pricing.extras.coaching.cost;
+        activeExtras.push(pricing.extras.coaching);
+      }
+      if (document.getElementById('chk-catering')?.checked) {
+        extrasCost += pricing.extras.catering.cost;
+        activeExtras.push(pricing.extras.catering);
+      }
+      if (document.getElementById('chk-stream')?.checked) {
+        extrasCost += pricing.extras.stream.cost;
+        activeExtras.push(pricing.extras.stream);
+      }
+
+      const subtotal = baseCost + extrasCost;
+      const vat = Math.round(subtotal * 0.15);
+      const grandTotal = subtotal + vat;
+
+      const container = document.getElementById('estimate-items');
+      if (container) {
+        container.innerHTML = `
+          <div class="flex justify-between items-start pb-1 border-b border-indigo-900/40">
+            <div class="pr-2">
+              <span class="font-bold text-white block">${typeData.name}</span>
+              <span class="text-[11px] text-indigo-300">${squadData.name} • ${durData.name}</span>
+            </div>
+            <span class="font-bold text-white">R${baseCost.toLocaleString()}</span>
+          </div>
+        `;
+
+        activeExtras.forEach(item => {
+          container.innerHTML += `
+            <div class="flex justify-between items-center text-xs">
+              <span class="text-indigo-200">+ ${item.name}</span>
+              <span class="font-bold text-indigo-100">R${item.cost.toLocaleString()}</span>
+            </div>
+          `;
+        });
+      }
+
+      document.getElementById('txt-subtotal').innerText = `R${subtotal.toLocaleString()}`;
+      document.getElementById('txt-vat').innerText = `R${vat.toLocaleString()}`;
+      document.getElementById('txt-total').innerText = `R${grandTotal.toLocaleString()}`;
+    }
+
+    function openModal(title, description) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-description').innerText = description;
+      document.getElementById('modal-content-area').innerHTML = `
+        <div class="flex justify-between"><span class="text-gray-500">Experience Package:</span><span class="font-bold text-brand-navy">${pricing.types[state.type].name}</span></div>
+        <div class="flex justify-between"><span class="text-gray-500">Group Setup:</span><span class="font-bold text-brand-navy">${pricing.squads[state.squad].name}</span></div>
+        <div class="flex justify-between"><span class="text-gray-500">Estimated Total (ZAR):</span><span class="font-bold text-brand-green">${document.getElementById('txt-total').innerText}</span></div>
+      `;
+      document.getElementById('app-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('app-modal').classList.add('hidden');
+    }
+
+    function triggerBookingModal() {
+      openModal('Confirm Session Reservation', 'Review your itemized estimate details before finalizing your slot at our Johannesburg Arena.');
+    }
+
+    function confirmBookingSuccess() {
+      alert('Booking Request Submitted Successfully! A representative from NEXTLEVEL Arena will contact you shortly.');
+      closeModal();
+    }
+  </script>
+</body>
+</html>
