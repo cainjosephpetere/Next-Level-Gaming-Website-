@@ -110,6 +110,8 @@ Footer (links to page sections and venue information)
 - `style.css` — Visual design, responsive layouts, menu/dialog states and reduced-motion styling.
 - `script.js` — Navigation and dialog interactions, estimator calculations, and Formspree submission.
 - `assets/nextlevel-logo.png` — Arena logo used in the header and footer.
+- `robots.txt` — Allows search engine crawlers and points them to the XML sitemap.
+- `sitemap.xml` — Lists the published homepage for search engines.
 
 ## Run locally
 
@@ -123,6 +125,7 @@ The website's external fonts, photographs, map and booking service require an in
 
 - Added a responsive, lazy-loaded Google Map centered on Johannesburg to the contact section.
 - Expanded this README with project information, feature and page details, a sitemap, and references.
+- Added `robots.txt` and `sitemap.xml` for search engine crawling and discovery.
 
 ##  References (Harvard Anglia style)
 
