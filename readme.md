@@ -112,6 +112,7 @@ Footer (links to page sections and venue information)
 - `assets/nextlevel-logo.png` — Arena logo used in the header and footer.
 - `robots.txt` — Allows search engine crawlers and points them to the XML sitemap.
 - `sitemap.xml` — Lists the published homepage for search engines.
+- `screenshots/` — Desktop screenshots of the homepage, experiences, arena, equipment, pricing, estimator and contact sections.
 
 ## Run locally
 
@@ -126,6 +127,7 @@ The website's external fonts, photographs, map and booking service require an in
 - Added a responsive, lazy-loaded Google Map centered on Johannesburg to the contact section.
 - Expanded this README with project information, feature and page details, a sitemap, and references.
 - Added `robots.txt` and `sitemap.xml` for search engine crawling and discovery.
+- Added screenshots of the website’s key sections.
 
 ##  References (Harvard Anglia style)
 
