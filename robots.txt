@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cainjosephpetere.github.io/Next-Level-Gaming-Website-/sitemap.xml
