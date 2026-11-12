@@ -2,21 +2,18 @@
 
 ## Student information
 
-Replace the placeholders below with the details required by your course.
-
-| Field | Information |
-| --- | --- |
 | Student name | Student number |
-|---|---|
+| --- | --- |
 | Mulenga Noam | ST10517736 |
 | Cain Joseph | ST10541995 |
 | Neo Sipho | ST10535603 |
 | Umile Mbombela | ST10524342 |
 
-| Institution | ROSEBANK INTERNATIONAL COLLEGE  |
-| Programme / course |  WORK INTEGRATED LEARNING 1 |
+| Field | Information |
+| --- | --- |
+| Institution | ROSEBANK INTERNATIONAL COLLEGE |
+| Programme / course | WORK INTEGRATED LEARNING 1 |
 | Module | XHAW5112 |
-|
 | Submission date | November 13, 2026 |
 
 ## Project overview
