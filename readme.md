@@ -16,6 +16,14 @@
 | Module | XHAW5112 |
 | Submission date | November 13, 2026 |
 
+## Video demo
+
+[Watch the website demo on YouTube](https://youtu.be/I6lAK18cZOc?feature=shared)
+
+## Live deployment
+
+[Visit the deployed website](https://cainjosephpetere.github.io/Next-Level-Gaming-Website-/)
+
 ## Project overview
 
 This project is a responsive, single-page website for Next Level Gaming & Esports Arena, presented as a gaming venue in Rosebank, Johannesburg. It introduces the arena and its experiences, explains session packages, provides an interactive fee estimate in South African Rand (ZAR), and lets visitors send a booking enquiry.
