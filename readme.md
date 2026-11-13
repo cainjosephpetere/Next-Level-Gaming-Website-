@@ -121,6 +121,7 @@ Footer (links to page sections and venue information)
 - `robots.txt` — Allows search engine crawlers and points them to the XML sitemap.
 - `sitemap.xml` — Lists the published homepage for search engines.
 - `screenshots/` — Desktop screenshots of the homepage, experiences, arena, equipment, pricing, estimator and contact sections.
+- `presentation/` — Folder for the PowerPoint presentation.
 
 ## Run locally
 
